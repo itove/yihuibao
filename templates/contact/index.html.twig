@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Us - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {# Page Header #}
+    <div class="page-header">
+        <div class="container">
+            <div class="row page-section">
+                <div class="col-md-8">
+                    <h4>Make your</h4>
+                    <h1>Appointment</h1>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Contact section #}
+    <div class="ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="heading-title">Location map</h1>
+                    <h4 class="sub-title-normal">You can find us through map</h4>
+                    <div class="googleMap mb50" id="googleMap"></div>          
+                </div>      
+            </div>
+            <div class="row">
+                {# Contact Form #}
+                <form class="appointment-form" method="post" action="{{ path('app_contact_submit') }}">
+                    <div class="col-md-8">
+                        <h1 class="heading-title mb20">Contact form</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="first-name" name="first_name" placeholder="First Name*" type="text" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="last-name" name="last_name" placeholder="Last Name*" type="text" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="email" name="email" placeholder="Email*" type="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" id="phone" name="phone" placeholder="Phone*" type="tel" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="message" id="message" class="form-control" rows="5" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt20">
+                                <button type="submit" class="btn btn-default">Submit Now</button>
+                            </div>                                      
+                        </div>
+                    </div>
+                </form>
+
+                {# Contact Details #}
+                <div class="col-md-4">
+                    <h1 class="heading-title mb20">Details</h1>
+                    <div class="contact-box">
+                        <div class="contact-icon">
+                            <i class="icon-location-pin icons"></i>
+                            <div class="contact-box-content">
+                                <span>Address</span>
+                                <p>{{ contact.address|default('Medical street, Indiranagr, Royal building, 1536') }}</p>
+                            </div>
+                        </div>
+                        <div class="contact-icon">
+                            <i class="icon-envelope icons"></i>
+                            <div class="contact-box-content">
+                                <span>Email</span>
+                                <a href="mailto:{{ contact.email|default('info@medical.com') }}" class="contact-link">
+                                    {{ contact.email|default('info@medical.com') }}
+                                </a>
+                            </div>  
+                        </div>
+                        <div class="contact-icon">
+                            <i class="icon-call-out icons"></i>
+                            <div class="contact-box-content">
+                                <span>Phone</span>
+                                <a href="tel:{{ contact.phone|default('+91 8564 2256 555')|replace({' ': ''}) }}" class="contact-link">
+                                    {{ contact.phone|default('+91 8564 2256 555') }}
+                                </a>
+                            </div>
+                        </div>                                                                         
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key|default('') }}&callback=initMap"></script>
+    <script type="text/javascript">
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('googleMap'), {
+                zoom: 12,
+                scrollwheel: false,
+                center: {lat: {{ map.lat|default(23.0739208) }}, lng: {{ map.lng|default(72.55036849999999) }}}
+            });
+
+            setMarkers(map);
+        }
+
+        function setMarkers(map) {
+            var shape = {
+                coords: [1, 1, 1, 30, 30, 30, 30, 1],
+                type: 'poly'
+            };
+
+            var image = {
+                url: '{{ asset('images/marker.png') }}',
+                size: new google.maps.Size(40, 49),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 49)
+            };
+
+            var marker = new google.maps.Marker({
+                position: {lat: {{ map.lat|default(23.0739208) }}, lng: {{ map.lng|default(72.55036849999999) }}},
+                map: map,
+                icon: image,
+                shape: shape,
+                title: "{{ site_name|default('Our map Address') }}",
+                zIndex: 1
+            });
+
+            var content = "<h4>{{ site_name|default('Mediline Clinic') }}:</h4> {{ map.address|default('Our map Address') }}";  
+            var infowindow = new google.maps.InfoWindow()
+
+            google.maps.event.addListener(marker, 'click', (function(marker,content,infowindow){ 
+                return function() {
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                };
+            })(marker,content,infowindow));
+        }
+    </script>
+{% endblock %} 

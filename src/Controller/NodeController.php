@@ -217,16 +217,6 @@ class NodeController extends AbstractController
         return $this->render('services.html.twig', $data);
     }
 
-    #[Route('/contact', name: 'app_contact')]
-    public function contact(Request $request): Response
-    {
-        $data = $this->data->getPageContent('contact', $request->getLocale());
-        $data['page']['label'] = 'Contact Us';
-        $data['page']['intro'] = '大同已根植湖并走向全国：下辖28家机构，其中湖北省内分公司18家，省外分公司6家，省内营业部 4 家。';
-
-        return $this->render('contact.html.twig', $data);
-    }
-
     #[Route('/hire', name: 'app_hire')]
     public function hire(Request $request): Response
     {
