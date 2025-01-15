@@ -28,3 +28,9 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+/public/css/
+/public/js/
+/public/fonts/
+/public/images/
+/moban1791/

@@ -20,13 +20,84 @@ class IndexController extends AbstractController
         $this->translator = $translator;
     }
     
-    // #[Route('/', name: 'app_index')]
+    #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
         $data = $this->data->getPageContent('home', $request->getLocale());
 
         $data['news'] = $this->data->findNodesByRegionLabel('news');
+        $data['site_name'] = 'test';
         
-        return $this->render('index/index.html.twig', $data);
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_doctors')]
+    public function index1(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_doctor_details')]
+    public function index2(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_service_details')]
+    public function index3(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_appointment')]
+    public function index4(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_departments')]
+    public function index5(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_blog')]
+    public function index6(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
+    }
+
+    #[Route('/', name: 'app_newsletter_subscribe')]
+    public function index7(Request $request): Response
+    {
+        $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
+        
+        return $this->render('home/index.html.twig', $data);
     }
 }

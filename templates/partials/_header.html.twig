@@ -1,0 +1,32 @@
+{# Topbar #}
+<div class="topbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <p class="wel-msg">Welcome to Mediline Center</p>
+            </div>
+            <div class="col-md-7 col-sm-7 hidden-xs">
+                <div class="topbar-contact">
+                    <span class="topbar-email topbar-info"><a href="#"><i class="fa fa-envelope"></i>info@medical.com</a></span>
+                    <span class="topbar-info"><a href="#"><i class="fa fa-comments-o"></i>live chat</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Header #}
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a class="navbar-brand" href="{{ path('app_home') }}">
+                    <img src="{{ asset('images/logo.png') }}" class="img-responsive" alt="Logo">
+                </a>
+            </div>
+            <div class="col-md-9">
+                {{ include('partials/_navigation.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div> 

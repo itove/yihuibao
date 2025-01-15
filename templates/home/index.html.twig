@@ -1,0 +1,378 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {# Banner Section #}
+    <div class="banner-section">    
+        {# Slider #}
+        <div class="slider">
+            <div class="item" style="background-image: url('{{ asset('images/banner1.jpg') }}')">
+                <div class="overlay-home"></div>
+                <div class="slide-captions">
+                    <div class="container">
+                        <div class="slide-title">Advanced Technology</div>
+                        <div class="slide-heading">For all your medical needs</div>
+                        <div class="mt50">
+                            <a href="{{ path('app_about') }}" class="btn btn-linegreen">Read more</a>
+                            <a href="{{ path('app_services') }}" class="btn btn-lineblue">Services</a> 
+                       </div>
+                    </div>    
+                </div>        
+            </div>
+            <div class="item" style="background-image: url('{{ asset('images/banner2.jpg') }}')">
+                <div class="overlay-home"></div>
+                <div class="slide-captions">
+                    <div class="container">
+                        <div class="slide-title">Our Treatment</div>
+                        <div class="slide-heading">Provide best medical treatment</div>
+                        <div class="mt50">
+                            <a href="{{ path('app_about') }}" class="btn btn-linegreen">Read more</a>
+                            <a href="{{ path('app_services') }}" class="btn btn-lineblue">Services</a> 
+                        </div>
+                     </div>   
+                </div>      
+            </div> 
+        </div>
+
+        {# Specialities Block #}
+        <div class="container specialities-block">
+            <div class="specialities-box">
+                <div class="specialities-title">
+                    <h6 class="heading-title">Our</h6>
+                    <h3 class="heading-title">Specialities</h3>
+                </div>
+                <ul class="listnone mb0">
+                    <li>
+                        <div class="specialities-icon"><i class="iconmed-cardiology"></i></div>
+                        <div class="specialities-content">
+                            <h3 class="mb5">Cardiology Department</h3>
+                            <p>This is a small information...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="specialities-icon"><i class="iconmed-brain"></i></div>
+                        <div class="specialities-content">
+                            <h3 class="mb5">Neurology Department</h3>
+                            <p>This is a small information...</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="specialities-icon"><i class="iconmed-ambulance"></i></div>
+                        <div class="specialities-content">
+                            <h3 class="mb5">24 hour Casualty</h3>
+                            <p>This is a small information...</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="text-center">
+                    <a href="{{ path('app_departments') }}" class="btn btn-default btn-lg">View all departments</a>
+                </div>
+            </div>   
+        </div>
+    </div>
+
+    {# Testimonial Section #}
+    <div class="testimonial-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 testimonial-arrow-right">
+                    <div id="testimonial-thumb" class="owl-carousel">                    
+                        <div class="testimonial-box projectitem">
+                            <img src="{{ asset('images/testimonial3.jpg') }}" class="img-circle" alt="testimonial 1" />
+                        </div>
+                        <div class="testimonial-box projectitem">
+                            <img src="{{ asset('images/testimonial2.jpg') }}" class="img-circle" alt="testimonial 2" />
+                        </div>
+                        <div class="testimonial-box projectitem">
+                            <img src="{{ asset('images/testimonial1.jpg') }}" class="img-circle" alt="testimonial 3" />
+                        </div>
+                    </div>   
+                </div>
+                <div class="col-md-9 col-sm-8">
+                    <div id="testimonial-content" class="owl-carousel">                    
+                        <div class="projectitem">
+                            <div class="testimonial-contact">
+                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                <div class="testimonial-name">Mariya thomas</div>
+                            </div>
+                        </div>
+                        <div class="projectitem">
+                            <div class="testimonial-contact">
+                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                <div class="testimonial-name">Steve Root</div>
+                            </div>
+                        </div>
+                        <div class="projectitem">
+                            <div class="testimonial-contact">
+                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                <div class="testimonial-name">Becky Thomsan</div>
+                            </div>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# About Section #}
+    <div class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <img src="{{ asset('images/home-doctor-team.jpg') }}" class="img-responsive" alt="Doctor Team" >
+                </div>            
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="about-whitebox">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="heading-title">About us</h1>
+                                <h4 class="sub-title mb30">What we are and our history</h4>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <div class="text-center">
+                                    <a href="{{ path('app_about') }}" class="btn btn-default">read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+    {# Department Section #}
+    <div class="department-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="heading-title">Department</h1>
+                    <h4 class="sub-title mb60">Our department & special services</h4>                
+                </div>
+            </div>
+            <div class="row">
+                {% for department in [
+                    {icon: 'oralhealth', title: 'Oral Health'},
+                    {icon: 'otology', title: 'Otology'},
+                    {icon: 'hepatology', title: 'Hepatology'},
+                    {icon: 'gastroenterology', title: 'Gastroenterology'},
+                    {icon: 'ophthalmology', title: 'Ophthalmology'},
+                    {icon: 'orthopedics', title: 'Orthopedics'}
+                ] %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 department-inner-icon">
+                                <i class="iconmed-{{ department.icon }} department-icon"></i>
+                            </div>
+                            <div class="col-md-9 col-sm-9">
+                                <h2><a href="#">{{ department.title }}</a></h2>
+                                <p class="mb60">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('app_departments') }}" class="btn btn-default">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Doctor Section #}
+    <div class="doctor-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="heading-title">Our Doctors</h1>
+                    <h4 class="sub-title">Here is our specialized team</h4>                  
+                </div>
+            </div>
+            <div class="row dt-bottom">
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="dr1">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('images/dr-main-home.png') }}" class="img-responsive" alt="" />
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="dr-details">
+                                        <h2 class="mb0">Dr. Indhulekha Mari</h2>
+                                        <h4 class="mb25">Ophthalmology</h4>                                    
+                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
+                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
+                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>                                    
+                                        <div class="dr-social-box">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="dr2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('images/dr-main-home3.png') }}" class="img-responsive" alt="" />
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="dr-details">
+                                        <h2 class="mb0">Dr. Jonathen petter</h2>
+                                        <h4 class="mb25">Hepatology</h4>                                    
+                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
+                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
+                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>                                    
+                                        <div class="dr-social-box">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>                    
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="dr3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('images/dr-main-home2.png') }}" class="img-responsive" alt="" />
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="dr-details">
+                                        <h2 class="mb0">Dr. Samuvel son</h2>
+                                        <h4 class="mb25">Orthopedics</h4>                                    
+                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
+                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
+                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>
+                                        <div class="dr-social-box">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dr-tabs-box"> 
+                        <ul class="nav dr-tab" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#dr1" aria-controls="dr1" role="tab" data-toggle="tab">
+                                    <div class="dr-box">
+                                        <span class="dr-img">
+                                            <img src="{{ asset('images/small-dr-1.jpg') }}" class="img-responsive img-circle" alt="" />
+                                        </span>
+                                        <span class="dr-title">Dr. Indhulekha Mari</span>
+                                        <span class="dr-sub-title">Ophthalmology</span>                    
+                                    </div> 
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#dr2" aria-controls="dr2" role="tab" data-toggle="tab">                   
+                                    <div class="dr-box">
+                                        <span class="dr-img">
+                                            <img src="{{ asset('images/small-dr-2.jpg') }}" class="img-responsive img-circle" alt="" />
+                                        </span>
+                                        <span class="dr-title">Dr. Jonathen petter</span>
+                                        <span class="dr-sub-title">Hepatology</span>                    
+                                    </div>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#dr3" aria-controls="dr3" role="tab" data-toggle="tab">                    
+                                    <div class="dr-box">
+                                        <span class="dr-img">
+                                            <img src="{{ asset('images/small-dr-3.jpg') }}" class="img-responsive img-circle" alt="" />
+                                        </span>
+                                        <span class="dr-title">Dr. Samuvel son</span>
+                                        <span class="dr-sub-title">Orthopedics</span>                    
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Why Choose Us Section #}
+    <div class="why-choose-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 text-center">
+                    <h1 class="heading-title">Why Choose Us</h1>
+                    <h4 class="sub-title mb30">Here is our speciality</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+            <div class="row">
+                {% for stat in [
+                    {icon: 'building-o', count: 600, text: 'Hospital rooms'},
+                    {icon: 'user-md', count: 200, text: 'Professionals'},
+                    {icon: 'trophy', count: 18, text: 'Hospital awards'},
+                    {icon: 'smile-o', count: 3000, text: 'Happy patients'}
+                ] %}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="why-choose-box">
+                            <div class="why-icon-box">
+                                <i class="fa fa-{{ stat.icon }}"></i>
+                            </div>
+                            <div class="why-choose-content">
+                                <div class="why-heading counter">{{ stat.count }}</div>
+                                <div class="why-sub-heading">{{ stat.text }}</div>
+                            </div>                    
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {# Blog Section #}
+    <div class="blog-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="heading-title">Blog/News</h1>
+                    <h4 class="sub-title">Featured news from our blog</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <div class="blog-section-day">15</div>
+                            <div class="blog-section-month">august -16</div>
+                        </div>
+                        <div class="col-md-9 col-sm-9">
+                            <h2><a href="#" class="black">Blog Heading Here</a></h2>
+                            <div class="blog-section-meta meta-box-tag">
+                                <span class="meta-author">Posted by: <a href="#" class="meta-link">admin</a></span>
+                                <span class="meta-comments"><a href="#" class="meta-link">8 Comments</a></span>
+                            </div>
+                            <p>Generator on the Internet. It uses a dictionary of over 200 Latin words...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="blog-section-img">
+                        <img src="{{ asset('images/blog-home.jpg') }}" class="img-responsive" alt="Blog">
+                    </div>
+                </div>
+                <div class="col-md-12 text-center mt50">
+                    <a href="{{ path('app_blog') }}" class="btn btn-default">Full News</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

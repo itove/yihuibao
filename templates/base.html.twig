@@ -1,17 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="">
+        <meta name="author" content="" />
+        <meta name="MobileOptimized" content="320" />
+        
+        <title>{% block title %}Home{% endblock %}</title>
+
+        {# Favicon #}
+        <link rel="icon" type="image/icon" href="{{ asset('images/favicon/favicon.ico') }}">
+
         {% block stylesheets %}
+            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/fontello.css') }}" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,800" rel="stylesheet">
+            <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/menumaker.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/stucture.css') }}" rel="stylesheet">
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block header %}
+            {# Include header template #}
+            {{ include('partials/_header.html.twig') }}
+        {% endblock %}
+
+        {% block body %}{% endblock %}
+
+        {% block footer %}
+            {# Include footer template #}
+            {{ include('partials/_footer.html.twig') }}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('js/waypoints.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.counterup.js') }}"></script>
+            <script src="{{ asset('js/menumaker.js') }}"></script>
+            <script src="{{ asset('js/theme.js') }}"></script>
         {% endblock %}
-    </head>
-    <body>
-        {% block main %} {% endblock %}
     </body>
 </html>

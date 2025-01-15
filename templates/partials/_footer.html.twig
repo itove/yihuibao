@@ -1,0 +1,94 @@
+{# Footer-section #}
+<div class="footer-section">
+    <div class="container">
+        <div class="row">
+            {# Contact Info #}
+            <div class="col-md-3">
+                <div class="footer-contact-box">
+                    <h2>Contact Us</h2>
+                    <div class="contact-icon">
+                        <i class="icon-location-pin icons"></i>
+                        <p>Medical street, Indiranagr, Royal building, 1536</p>
+                    </div>
+                    <div class="contact-icon">
+                        <i class="icon-envelope icons"></i>
+                        <p>info@medical.com</p>
+                    </div>
+                    <div class="contact-icon">
+                        <i class="icon-call-out icons"></i>
+                        <p>+91 8564 2256 555</p>
+                    </div>                
+                    <div class="footer-social-box">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {# Navigation Links #}
+            <div class="col-md-offset-1 col-md-3">
+                <div class="footer-widget">
+                    <h2>Navigation</h2>
+                    <ul class="listnone bullet-arrow-right footer-ul footer-menu">
+                        <li><a href="{{ path('app_home') }}">Home</a></li>
+                        <li><a href="{{ path('app_doctors') }}">Doctors</a></li>
+                        <li><a href="{{ path('app_services') }}">Services</a></li>
+                        <li><a href="{{ path('app_about') }}">About</a></li>
+                        <li><a href="{{ path('app_appointment') }}">Appointment</a></li>
+                        <li><a href="{{ path('app_contact') }}">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {# Working Hours #}
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h2>Working Hours</h2>
+                    <ul class="listnone footer-ul">
+                        <li>Monday - Friday</li>
+                        <li>: 8.00 - 16.00</li>
+                        <li>Saturday</li>
+                        <li>: 9.30 - 10.30</li>
+                        <li>Sunday</li>
+                        <li>: 9.30 - 10.30</li>
+                    </ul>
+                </div>                
+            </div>
+
+            {# Newsletter #}
+            <div class="col-md-2">
+                <div class="footer-widget">
+                    <h2>Newsletter</h2>
+                    <form class="newsletter" action="{{ path('app_newsletter_subscribe') }}" method="POST">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" id="newsletter" name="email" placeholder="Email address" type="email" required>
+                                <span class="input-group-btn">
+                                    <button class="footer-newsletter" type="submit">
+                                        <i class="fa fa-arrow-circle-o-right"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Tiny-footer Section #}
+<div class="tiny-footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-6">
+                <div class="tiny-footer-copyright">
+                    Copyright © {{ "now"|date("Y") }} {{ site_name|default('Medical Center') }}. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
