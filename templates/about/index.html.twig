@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About Us - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {# Page Header #}
+    <div class="page-header">
+        <div class="container">
+            <div class="row page-section">
+                <div class="col-md-8">
+                    <h4>What we are</h4>
+                    <h1>About Us</h1>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# About-us-section #}
+    <div class="about-us-section ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="heading-title">About us</h1>
+                    <h4 class="sub-title mb30">What we are and our history</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                    
+                    <div class="blockquote">
+                        <p>Popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker.</p>
+                    </div>
+                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ asset('images/about-circle.jpg') }}" class="img-responsive img-circle" alt="About Us" />
+                </div>            
+        </div>
+    </div>
+</div>
+
+    {# Doctor section #}
+    <div class="lightbg ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="text-center">
+                        <h1 class="heading-title">Our Doctors</h1>
+                        <h4 class="sub-title mb30">Here is our specialized team</h4>
+                    </div>
+                </div>
+                {% for doctor in doctors|default([
+                    {image: 'doctor1.jpg', name: 'Doctor Name', department: 'Departments'},
+                    {image: 'doctor2.jpg', name: 'Doctor Name', department: 'Departments'},
+                    {image: 'doctor3.jpg', name: 'Doctor Name', department: 'Departments'},
+                    {image: 'doctor4.jpg', name: 'Doctor Name', department: 'Departments'}
+                ]) %}
+                    <div class="col-lg-3 col-md-3">
+                        <div class="dc-box">
+                            <a href="{{ path('app_doctor_details') }}">
+                                <img src="{{ asset('images/' ~ doctor.image) }}" class="img-responsive" alt="{{ doctor.name }}" />
+                            </a>
+                            <h4><a href="{{ path('app_doctor_details') }}">{{ doctor.name }}</a></h4>
+                            <span>{{ doctor.department }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {# Department Section #}
+    <div class="department-section ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="heading-title">Department</h1>
+                    <h4 class="sub-title mb60">Our department & special services</h4>                
+                </div>        
+                <div class="col-md-8">
+                    <div class="row" role="tablist">
+                        {% for dept in departments|default([
+                            {icon: 'oralhealth', name: 'Oral Health'},
+                            {icon: 'otology', name: 'Otology'},
+                            {icon: 'hepatology', name: 'Hepatology'},
+                            {icon: 'gastroenterology', name: 'Gastroenterology'},
+                            {icon: 'ophthalmology', name: 'Ophthalmology'},
+                            {icon: 'orthopedics', name: 'Orthopedics'}
+                        ]) %}
+                            <div class="col-md-6 col-sm-6">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 department-inner-icon">
+                                        <i class="iconmed-{{ dept.icon }} department-icon"></i>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9">
+                                        <h2>
+                                            <a href="#{{ dept.icon }}" aria-controls="{{ dept.icon }}" role="tab" data-toggle="tab">
+                                                {{ dept.name }}
+                                            </a>
+                                        </h2>
+                                        <p class="mb60">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="{{ path('app_departments') }}" class="btn btn-default">View More</a>
+                        </div>
+                    </div>        
+                </div>
+                <div class="col-md-4">
+                    <div class="tab-content">
+                        {% for dept in departments|default([
+                            {icon: 'oralhealth', name: 'Oral Health'},
+                            {icon: 'otology', name: 'Otology'},
+                            {icon: 'hepatology', name: 'Hepatology'},
+                            {icon: 'gastroenterology', name: 'Gastroenterology'},
+                            {icon: 'ophthalmology', name: 'Ophthalmology'},
+                            {icon: 'orthopedics', name: 'Orthopedics'}
+                        ]) %}
+                            <div role="tabpanel" class="tab-pane {{ loop.first ? 'active' }}" id="{{ dept.icon }}">
+                                <div class="department-right-box">
+                                    <div class="department-right-box-icon">
+                                        <i class="iconmed-{{ dept.icon }} department-icon"></i>
+                                    </div>
+                                    <div class="department-right-box-content">
+                                        <h1>{{ dept.name }}</h1>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley scrambled.</p>
+                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mt50">Book appointment</a>                               
+                                    </div> 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# CTA Section #}
+    <div class="cta-white ptb70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="mb0">Make your appointment now</h1>
+                    <p class="mb30">Lorem Ipsum which looks reasonable generated Ipsum is therefore always.</p>
+                    <a href="{{ path('app_appointment') }}" class="btn btn-default">Book appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
