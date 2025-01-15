@@ -22,40 +22,54 @@ use App\Entity\Fav;
 use App\Entity\Language;
 use App\Entity\Conf;
 use App\Entity\Category;
-use App\Entity\Area;
 use App\Entity\Menu;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
     private $doctrine;
-    // private $nodes;
     private $conf;
-    // private $regions;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, private ChartBuilderInterface $chartBuilder)
     {
       $this->doctrine = $doctrine;
-      // $this->nodes = $doctrine->getRepository(Node::class);
       $this->conf = $doctrine->getRepository(Conf::class)->findOneBy([], ['id' => 'ASC']);
-      // $this->regions = $doctrine->getRepository(Region::class)->findAll();
     }
     
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator
-                    ->setController(_N27::class)
-                    ->set('region', '27')
-                    // ->setAction('detail')
-                    // ->setEntityId(1)
-                    ->generateUrl()
-        );
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart->setData([
+            'labels' => ['一月', '二月', '三月', '四月', '五月', '六月', '七月'],
+            'datasets' => [
+                [
+                    'label' => '内容数量',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                ],
+            ],
+        ]);
+
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 100,
+                ],
+            ],
+        ]);
+
+        return $this->render('dashboard.html.twig', [
+            'chart' => $chart,
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -106,15 +120,16 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        $pages = $this->doctrine->getRepository(Page::class)->findBy([], ['weight' => 'ASC', 'id' => 'ASC']);
-        
         yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
+
+        $pages = $this->doctrine->getRepository(Page::class)->findBy([], ['weight' => 'ASC', 'id' => 'ASC']);
         
         yield MenuItem::section('Content Management')
             // ->setCssClass('test');
             // ->setBadge('test')
             // ->setPermission('ROLE_SUPER_ADMIN')
         ;
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-chart-pie');
         
         foreach ($pages as $p) {
             if ($_ENV['USE_SUBMENU']) {
@@ -155,18 +170,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Menu Management', 'fas fa-link', Menu::class);
         yield MenuItem::linkToCrud('Tag Management', 'fas fa-tags', Tag::class);
         yield MenuItem::linkToCrud('Category Management', 'fas fa-table-cells-large', Category::class);
-        yield MenuItem::linkToCrud('Area Management', 'fas fa-location-dot', Area::class);
-
         yield MenuItem::section('Region Management');
         yield MenuItem::linkToCrud('Page Management', 'fas fa-cog', Page::class);
         yield MenuItem::linkToCrud('Region Management', 'fas fa-cog', Region::class);
-        
-        // admin menu of regions
-        // foreach ($this->regions as $region) {
-        //     yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
-        //         ->setQueryParameter('region', $region->getId())
-        //     ;
-        // }
         
         yield MenuItem::section('Settings');
         yield MenuItem::linkToCrud('Change Password', 'fas fa-key', User::class)
