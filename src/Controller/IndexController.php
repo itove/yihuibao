@@ -31,36 +31,6 @@ class IndexController extends AbstractController
         return $this->render('home/index.html.twig', $data);
     }
 
-    #[Route('/', name: 'app_doctors')]
-    public function index1(Request $request): Response
-    {
-        $data = $this->data->getPageContent('home', $request->getLocale());
-
-        $data['news'] = $this->data->findNodesByRegionLabel('news');
-        
-        return $this->render('home/index.html.twig', $data);
-    }
-
-    #[Route('/', name: 'app_doctor_details')]
-    public function index2(Request $request): Response
-    {
-        $data = $this->data->getPageContent('home', $request->getLocale());
-
-        $data['news'] = $this->data->findNodesByRegionLabel('news');
-        
-        return $this->render('home/index.html.twig', $data);
-    }
-
-    #[Route('/', name: 'app_service_details')]
-    public function index3(Request $request): Response
-    {
-        $data = $this->data->getPageContent('home', $request->getLocale());
-
-        $data['news'] = $this->data->findNodesByRegionLabel('news');
-        
-        return $this->render('home/index.html.twig', $data);
-    }
-
     #[Route('/', name: 'app_appointment')]
     public function index4(Request $request): Response
     {
