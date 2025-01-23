@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {# Page Header #}
+    <div class="page-header">
+        <div class="container">
+            <div class="row page-section">
+                <div class="col-md-8">
+                    <h4>Our offering</h4>
+                    <h1>Services</h1>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Services section #}
+    <div class="ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1 class="heading-title">Specialities</h1>
+                    <h4 class="sub-title mb30">Our special services</h4>
+                </div>
+            </div>
+
+            {% for row in services|batch(3) %}
+                <div class="row">
+                    {% for service in row %}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="service-style-box">
+                                <a href="{{ path('app_service_details', {id: service.id}) }}">
+                                    <img src="{{ asset('images/service/' ~ service.image) }}" class="img-responsive mb30" alt="{{ service.title }}">
+                                </a>    
+                                <h2>
+                                    <a href="{{ path('app_service_details', {id: service.id}) }}" class="black">{{ service.title }}</a>
+                                </h2>
+                                <p>{{ service.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#" class="btn btn-default">full services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Testimonial Section #}
+    <div class="testimonial-style ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"><span class="left-quote">"</span></div>
+                <div class="col-md-6">
+                    <h1 class="heading-title">Happy Client</h1>
+                    <h4 class="sub-title">What our client says about us</h4>
+                    <div id="testimonial-box1" class="testimonial-style-box">
+                        {% for testimonial in testimonials %}
+                            <div class="item">
+                                <div class="testimonial-style-content">
+                                    <p class="testimonial-text2">{{ testimonial.text }}</p>
+                                    <div class="testimonial-name">{{ testimonial.name }}<span>{{ testimonial.designation }}</span></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+        </div>
+    </div>
+
+    {# CTA Section #}
+    <div class="cta-white ptb70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="mb0">Make your appointment now</h1>
+                    <p class="mb30">{{ cta_text|default('Lorem Ipsum which looks reasonable generated Ipsum is therefore always.') }}</p>
+                    <a href="{{ path('app_appointment') }}" class="btn btn-default">Book appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

@@ -15,7 +15,7 @@
                 <a href="{{ path('app_services') }}" {% if 'service' in app.request.get('_route') %}class="active"{% endif %}>Services</a>
                 <ul>
                     <li><a href="{{ path('app_services') }}">Services</a></li>
-                    <li><a href="{{ path('app_service_details') }}">Service Details</a></li>
+                    <li><a href="{{ path('app_service_details', {id: 1}) }}">Service Details</a></li>
                 </ul>
             </li>
             

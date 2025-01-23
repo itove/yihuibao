@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Doctors - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {# Page Header #}
+    <div class="page-header">
+        <div class="container">
+            <div class="row page-section">
+                <div class="col-md-8">
+                    <h4>Specialist</h4>
+                    <h1>Doctors</h1>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Doctor section #}
+    <div class="ptb80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1 class="heading-title">Our Doctors</h1>
+                    <h4 class="sub-title mb30">Specialists</h4>
+                </div>
+            </div>
+            {% for row in doctors|batch(4) %}
+                <div class="row">
+                    {% for doctor in row %}
+                        <div class="col-lg-3 col-md-3">
+                            <div class="dc-style-box">
+                                <a href="{{ path('app_doctor_details', {id: doctor.id}) }}">
+                                    <img src="{{ asset('images/doctor/' ~ doctor.image) }}" class="img-responsive" alt="{{ doctor.name }}" />
+                                </a>
+                                <div class="dc-style-inner">
+                                    <ul>
+                                        <li><a href="{{ doctor.facebook|default('#') }}"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="{{ doctor.twitter|default('#') }}"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="{{ doctor.googleplus|default('#') }}"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul> 
+                                    <h5><a href="{{ path('app_doctor_details', {id: doctor.id}) }}">{{ doctor.name }}</a></h5>
+                                    <span>{{ doctor.department }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('app_doctors', {page: next_page}) }}" class="btn btn-default">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
