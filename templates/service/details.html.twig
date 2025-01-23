@@ -57,16 +57,16 @@
                 </div>    
                 
                 {% for service in featured_services|default([
-                    {image: 'service7.jpg', title: 'Sexual Health'},
-                    {image: 'service8.jpg', title: 'Non - Surgical Hair Replacement'},
-                    {image: 'service9.jpg', title: 'Additional Treatments'}
+                    {id: 7, image: 'service7.jpg', title: 'Sexual Health'},
+                    {id: 8, image: 'service8.jpg', title: 'Non - Surgical Hair Replacement'},
+                    {id: 9, image: 'service9.jpg', title: 'Additional Treatments'}
                 ]) %}
                     <div class="col-md-4 col-sm-4">
                         <div class="service-style-box">
-                            <a href="{{ path('app_service_details', {id: 1}) }}">
+                            <a href="{{ path('app_service_details', {id: service.id}) }}">
                                 <img src="{{ asset('images/service/' ~ service.image) }}" class="img-responsive mb30" alt="">
                             </a>    
-                            <h2><a href="{{ path('app_service_details', {id: 1}) }}" class="black">{{ service.title }}</a></h2>
+                            <h2><a href="{{ path('app_service_details', {id: service.id}) }}" class="black">{{ service.title }}</a></h2>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy ...</p>
                         </div>
                     </div>
