@@ -55,37 +55,23 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4 testimonial-arrow-right">
                     <div id="testimonial-thumb" class="owl-carousel">                    
-                        <div class="testimonial-box projectitem">
-                            <img src="{{ asset('images/testimonial3.jpg') }}" class="img-circle" alt="testimonial 1" />
-                        </div>
-                        <div class="testimonial-box projectitem">
-                            <img src="{{ asset('images/testimonial2.jpg') }}" class="img-circle" alt="testimonial 2" />
-                        </div>
-                        <div class="testimonial-box projectitem">
-                            <img src="{{ asset('images/testimonial1.jpg') }}" class="img-circle" alt="testimonial 3" />
-                        </div>
+                        {% for item in testimonial %}
+                            <div class="testimonial-box projectitem">
+                                <img src="{{ asset("images/#{item.image}") }}" class="img-circle" alt="{{ item.title }}" />
+                            </div>
+                        {% endfor %}
                     </div>   
                 </div>
                 <div class="col-md-9 col-sm-8">
                     <div id="testimonial-content" class="owl-carousel">                    
-                        <div class="projectitem">
-                            <div class="testimonial-contact">
-                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                <div class="testimonial-name">Mariya thomas</div>
+                        {% for item in testimonial %}
+                            <div class="projectitem">
+                                <div class="testimonial-contact">
+                                    <div class="testimonial-text">{{ item.title}}</div>
+                                    <div class="testimonial-name">{{ item.summary}}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="projectitem">
-                            <div class="testimonial-contact">
-                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                <div class="testimonial-name">Steve Root</div>
-                            </div>
-                        </div>
-                        <div class="projectitem">
-                            <div class="testimonial-contact">
-                                <div class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                <div class="testimonial-name">Becky Thomsan</div>
-                            </div>
-                        </div>                   
+                        {% endfor %}
                     </div>
                 </div>
             </div>
