@@ -1,33 +1,33 @@
 <div class="menu-box">
     <div id="navmenu">
         <ul>
-            <li><a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>Home</a></li>
+            <li><a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>首页</a></li>
             
             <li>
-                <a href="{{ path('app_doctors') }}" {% if 'doctor' in app.request.get('_route') %}class="active"{% endif %}>Doctors</a>
+                <a href="{{ path('app_doctors') }}" {% if 'doctor' in app.request.get('_route') %}class="active"{% endif %}>团队成员</a>
                 <ul>
-                    <li><a href="{{ path('app_doctors') }}">Doctors</a></li>
-                    <li><a href="{{ path('app_doctor_details') }}">Doctor Details</a></li>
+                    <li><a href="{{ path('app_doctors') }}">团队成员</a></li>
+                    <li><a href="{{ path('app_doctor_details') }}">成员详情</a></li>
                 </ul>
             </li>
             
             <li>
-                <a href="{{ path('app_services') }}" {% if 'service' in app.request.get('_route') %}class="active"{% endif %}>Services</a>
+                <a href="{{ path('app_services') }}" {% if 'service' in app.request.get('_route') %}class="active"{% endif %}>产品服务</a>
                 <ul>
-                    <li><a href="{{ path('app_services') }}">Services</a></li>
-                    <li><a href="{{ path('app_service_details', {id: 1}) }}">Service Details</a></li>
+                    <li><a href="{{ path('app_services') }}">产品服务</a></li>
+                    <li><a href="{{ path('app_service_details', {id: 1}) }}">解决方案</a></li>
                 </ul>
             </li>
             
-            <li><a href="{{ path('app_about') }}" {% if app.request.get('_route') == 'app_about' %}class="active"{% endif %}>About</a></li>
+            <li><a href="{{ path('app_about') }}" {% if app.request.get('_route') == 'app_about' %}class="active"{% endif %}>关于我们</a></li>
             
-            <li><a href="{{ path('app_appointment') }}" {% if app.request.get('_route') == 'app_appointment' %}class="active"{% endif %}>Appointment</a></li>
+            <li><a href="{{ path('app_appointment') }}" {% if app.request.get('_route') == 'app_appointment' %}class="active"{% endif %}>业务咨询</a></li>
             
-            <li><a href="{{ path('app_contact') }}" {% if app.request.get('_route') == 'app_contact' %}class="active"{% endif %}>Contact</a></li>
+            <li><a href="{{ path('app_contact') }}" {% if app.request.get('_route') == 'app_contact' %}class="active"{% endif %}>联系我们</a></li>
             
             <li class="pull-right">
                 <a href="#" class="call-menu">
-                    <span><i class="fa fa-volume-control-phone mr5"></i>+1800 2336 7811</span>
+                    <span><i class="fa fa-volume-control-phone mr5"></i>+188 8888 8888</span>
                 </a>
             </li>
         </ul>
