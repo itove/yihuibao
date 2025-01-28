@@ -7,66 +7,43 @@
     <div class="banner-section">    
         {# Slider #}
         <div class="slider">
-            <div class="item" style="background-image: url('{{ asset('images/banner1.jpg') }}')">
-                <div class="overlay-home"></div>
-                <div class="slide-captions">
-                    <div class="container">
-                        <div class="slide-title">Advanced Technology</div>
-                        <div class="slide-heading">For all your medical needs</div>
-                        <div class="mt50">
-                            <a href="{{ path('app_about') }}" class="btn btn-linegreen">Read more</a>
-                            <a href="{{ path('app_services') }}" class="btn btn-lineblue">Services</a> 
-                       </div>
-                    </div>    
-                </div>        
-            </div>
-            <div class="item" style="background-image: url('{{ asset('images/banner2.jpg') }}')">
-                <div class="overlay-home"></div>
-                <div class="slide-captions">
-                    <div class="container">
-                        <div class="slide-title">Our Treatment</div>
-                        <div class="slide-heading">Provide best medical treatment</div>
-                        <div class="mt50">
-                            <a href="{{ path('app_about') }}" class="btn btn-linegreen">Read more</a>
-                            <a href="{{ path('app_services') }}" class="btn btn-lineblue">Services</a> 
+            {% for slide in slider %}
+                <div class="item" style="background-image: url('{{ asset("images/#{slide.image}") }}')">
+                    <div class="overlay-home"></div>
+                    <div class="slide-captions">
+                        <div class="container">
+                            <div class="slide-title">{{ slide.title }}</div>
+                            <div class="slide-heading">{{ slide.summary }}</div>
+                            <div class="mt50">
+                                <a href="{{ path('app_about') }}" class="btn btn-linegreen">关于我们</a>
+                                <a href="{{ path('app_services') }}" class="btn btn-lineblue">产品服务</a>
+                            </div>
                         </div>
-                     </div>   
-                </div>      
-            </div> 
+                    </div>
+                </div>
+            {% endfor %}
         </div>
 
         {# Specialities Block #}
         <div class="container specialities-block">
             <div class="specialities-box">
                 <div class="specialities-title">
-                    <h6 class="heading-title">Our</h6>
-                    <h3 class="heading-title">Specialities</h3>
+                    <h6 class="heading-title">我们</h6>
+                    <h3 class="heading-title">的优势</h3>
                 </div>
                 <ul class="listnone mb0">
-                    <li>
-                        <div class="specialities-icon"><i class="iconmed-cardiology"></i></div>
-                        <div class="specialities-content">
-                            <h3 class="mb5">Cardiology Department</h3>
-                            <p>This is a small information...</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="specialities-icon"><i class="iconmed-brain"></i></div>
-                        <div class="specialities-content">
-                            <h3 class="mb5">Neurology Department</h3>
-                            <p>This is a small information...</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="specialities-icon"><i class="iconmed-ambulance"></i></div>
-                        <div class="specialities-content">
-                            <h3 class="mb5">24 hour Casualty</h3>
-                            <p>This is a small information...</p>
-                        </div>
-                    </li>
+                    {% for speciality in youshi %}
+                        <li>
+                            <div class="specialities-icon"><i class="iconmed-{{ speciality.image }}"></i></div>
+                            <div class="specialities-content">
+                                <h3 class="mb5">{{ speciality.title }}</h3>
+                                <p>{{ speciality.summary }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
                 <div class="text-center">
-                    <a href="{{ path('app_departments') }}" class="btn btn-default btn-lg">View all departments</a>
+                    <a href="{{ path('app_departments') }}" class="btn btn-default btn-lg">产品服务</a>
                 </div>
             </div>   
         </div>
