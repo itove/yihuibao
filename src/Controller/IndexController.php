@@ -25,8 +25,8 @@ class IndexController extends AbstractController
     {
         $data = $this->data->getPageContent('home', $request->getLocale());
 
-        $data['news'] = $this->data->findNodesByRegionLabel('news');
-        $data['site_name'] = 'test';
+        // $data['news'] = $this->data->findNodesByRegionLabel('news');
+        dump($data);
         
         return $this->render('home/index.html.twig', $data);
     }
