@@ -5,18 +5,18 @@
             {# Contact Info #}
             <div class="col-md-3">
                 <div class="footer-contact-box">
-                    <h2>Contact Us</h2>
+                    <h2>联系我们</h2>
                     <div class="contact-icon">
                         <i class="icon-location-pin icons"></i>
-                        <p>Medical street, Indiranagr, Royal building, 1536</p>
+                        <p>{{ conf.address }}</p>
                     </div>
                     <div class="contact-icon">
                         <i class="icon-envelope icons"></i>
-                        <p>info@medical.com</p>
+                        <p>{{ conf.email }}</p>
                     </div>
                     <div class="contact-icon">
                         <i class="icon-call-out icons"></i>
-                        <p>+91 8564 2256 555</p>
+                        <p>{{ conf.phone }}</p>
                     </div>                
                     <div class="footer-social-box">
                         <ul>
@@ -31,19 +31,20 @@
             {# Navigation Links #}
             <div class="col-md-offset-1 col-md-3">
                 <div class="footer-widget">
-                    <h2>Navigation</h2>
+                    <h2>网站导航</h2>
                     <ul class="listnone bullet-arrow-right footer-ul footer-menu">
-                        <li><a href="{{ path('app_home') }}">Home</a></li>
-                        <li><a href="{{ path('app_doctors') }}">Doctors</a></li>
-                        <li><a href="{{ path('app_services') }}">Services</a></li>
-                        <li><a href="{{ path('app_about') }}">About</a></li>
-                        <li><a href="{{ path('app_appointment') }}">Appointment</a></li>
-                        <li><a href="{{ path('app_contact') }}">Contact us</a></li>
+                        <li><a href="{{ path('app_home') }}">首页</a></li>
+                        <li><a href="{{ path('app_doctors') }}">团队成员</a></li>
+                        <li><a href="{{ path('app_services') }}">产品服务</a></li>
+                        <li><a href="{{ path('app_about') }}">关于我们</a></li>
+                        <li><a href="{{ path('app_appointment') }}">业务咨询</a></li>
+                        <li><a href="{{ path('app_contact') }}">联系我们</a></li>
                     </ul>
                 </div>
             </div>
 
             {# Working Hours #}
+            {#
             <div class="col-md-3">
                 <div class="footer-widget">
                     <h2>Working Hours</h2>
@@ -57,8 +58,10 @@
                     </ul>
                 </div>                
             </div>
+            #}
 
             {# Newsletter #}
+            {#
             <div class="col-md-2">
                 <div class="footer-widget">
                     <h2>Newsletter</h2>
@@ -76,6 +79,8 @@
                     </form>
                 </div>                
             </div>
+            #}
+
         </div>
     </div>
 </div>
@@ -86,7 +91,7 @@
         <div class="row">
             <div class="col-md-offset-4 col-md-6">
                 <div class="tiny-footer-copyright">
-                    Copyright © {{ "now"|date("Y") }} {{ site_name|default('Medical Center') }}. All rights reserved.
+                    Copyright © {{ "now"|date("Y") }} {{ site_name|default('医惠保') }}. All rights reserved.
                 </div>
             </div>
         </div>
