@@ -150,82 +150,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="heading-title">Our Doctors</h1>
+                    <h1 class="heading-title">团队成员</h1>
                     <h4 class="sub-title">Here is our specialized team</h4>                  
                 </div>
             </div>
             <div class="row dt-bottom">
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="dr1">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('images/dr-main-home.png') }}" class="img-responsive" alt="" />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="dr-details">
-                                        <h2 class="mb0">Dr. Indhulekha Mari</h2>
-                                        <h4 class="mb25">Ophthalmology</h4>                                    
-                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
-                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
-                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>                                    
-                                        <div class="dr-social-box">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                   
+                        {% for staff in staffs %}
+                            <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="dr{{ loop.index }}">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="{{ asset(staff.image|default('images/dr-main-home.png')) }}" class="img-responsive" alt="{{ staff.title }}" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="dr-details">
+                                            <h2 class="mb0">{{ staff.title }}</h2>
+                                            <h4 class="mb25">{{ staff.title }}</h4>                                    
+                                            <p class="ellipsis-2">{{ staff.summary }}</p>
+                                            <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">了解详情</a>
+                                            <a href="{{ path('app_doctor_details', {'id': staff.id}) }}" class="btn btn-primary">查看更多</a>                                    
+                                            <div class="dr-social-box">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                </ul>
+                                            </div>                                   
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="dr2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('images/dr-main-home3.png') }}" class="img-responsive" alt="" />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="dr-details">
-                                        <h2 class="mb0">Dr. Jonathen petter</h2>
-                                        <h4 class="mb25">Hepatology</h4>                                    
-                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
-                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
-                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>                                    
-                                        <div class="dr-social-box">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                   
-                                    </div>
-                                </div>
-                            </div>                    
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="dr3">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('images/dr-main-home2.png') }}" class="img-responsive" alt="" />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="dr-details">
-                                        <h2 class="mb0">Dr. Samuvel son</h2>
-                                        <h4 class="mb25">Orthopedics</h4>                                    
-                                        <p>Making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful.</p>
-                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mr10">make appointment</a>
-                                        <a href="{{ path('app_doctor_details') }}" class="btn btn-primary">View all</a>
-                                        <div class="dr-social-box">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                   
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -339,4 +295,4 @@
             </div>
         </div>
     </div>
-{% endblock %} 
+{% endblock %}
