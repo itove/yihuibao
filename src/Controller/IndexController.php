@@ -78,6 +78,7 @@ class IndexController extends AbstractController
     public function about(Request $request): Response
     {
         $data = $this->data->getPageContent('about', $request->getLocale());
+        $data['staffs'] = $this->data->findNodesByRegionLabel('staffs');
 
         // $data['page']['intro'] = '怀抱“经世济民，天下大同”的美好愿景，大同经纪在荆楚大地播下了希望的种子。在精彩的绽放中实现华丽转身，独树一帜，引领风潮。';
 
@@ -107,5 +108,38 @@ class IndexController extends AbstractController
         $this->addFlash('success', 'Thank you for your message. We will contact you soon!');
         
         return $this->redirectToRoute('app_contact');
+    }
+
+    #[Route('/doctors', name: 'app_doctors')]
+    public function doc_index(): Response
+    {
+        // In a real application, you would fetch this from a database
+        $doctors = [
+            [
+                'id' => 1,
+                'image' => 'dc1.jpg',
+                'name' => 'Dr. Indhulekha Mari',
+                'department' => 'Oral Health',
+                'facebook' => '#',
+                'twitter' => '#',
+                'googleplus' => '#'
+            ],
+            // Add more doctors here...
+        ];
+
+        return $this->render('doctor/index.html.twig', [
+            'doctors' => $doctors,
+            'next_page' => 2 // For pagination
+        ]);
+    }
+
+    #[Route('/doctor/details/{id}', name: 'app_doctor_details')]
+    public function doc_details(int $id, Request $request): Response
+    {
+        $data['staffs'] = $this->data->findNodesByRegionLabel('staffs');
+        $data['doctor'] = $this->data->find($id);
+        $data['conf'] = $this->data->getConf($request->getLocale());
+
+        return $this->render('doctor/details.html.twig', $data);
     }
 }

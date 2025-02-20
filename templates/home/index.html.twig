@@ -195,7 +195,7 @@
                                 <a href="#dr{{ loop.index }}" aria-controls="dr{{ loop.index }}" role="tab" data-toggle="tab">
                                     <div class="dr-box">
                                         <span class="dr-img">
-                                        <img src="{{ asset('images/' ~ staff.image|default('images/dr-thumb.png')) }}" class="img-circle" alt="{{ staff.title }}">
+                                        <img src="{{ asset('images/' ~ staff.image|default('images/dr-thumb.png')) }}" class="img-circle" alt="{{ staff.title }}" style="height: 60px; width: 60px; object-fit: cover;">
                                         </span>
                                         <span class="dr-title">{{ staff.title }}</span>
                                         <span class="dr-sub-title d-none">{{ staff.title }}</span>

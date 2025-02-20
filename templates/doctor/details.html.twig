@@ -8,11 +8,8 @@
         <div class="container">
             <div class="row page-section">
                 <div class="col-md-8">
-                    <h4>Specialist</h4>
-                    <h1>Doctors</h1>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                    <h4>Our Team</h4>
+                    <h1>团队成员</h1>
                 </div>
             </div>
         </div>
@@ -23,17 +20,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h1 class="heading-title">Doctor Profile</h1>
+                    <h1 class="heading-title">成员信息</h1>
                     <h4 class="sub-title mb30">Specialists</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{ asset('images/doctor/dc1.jpg') }}" class="img-reposive img-circle dc-img mb50" alt="{{ doctor.name }}" />
+                    <img src="{{ asset("images/#{doctor.image}") }}" class="img-reposive img-circle dc-img mb50" alt="{{ doctor.title }}" style="width: 268px; height: 268px; object-fit: cover;"/>
                 </div>
                 <div class="col-md-8">
                     <div class="dr-single-box">
-                        <h3 class="dr-single-tile">{{ doctor.name|default('Dr. doctor name') }} {{ doctor.qualifications|default('MBbs') }}</h3>
+                        <h3 class="dr-single-tile">{{ doctor.title |default('Dr. doctor name') }} {{ doctor.qualifications|default('MBbs') }}</h3>
                         <div class="sub-tile">{{ doctor.department|default('Cardiology') }}</div>
                         <div class="dc-single-social">
                             <ul>
@@ -42,8 +39,8 @@
                                 <li><a href="#" class="googleplus"><i class="fa fa-google-plus"></i></a></li>
                             </ul> 
                         </div>
-                        <p>{{ doctor.description|default('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.') }}</p>
-                        <a href="{{ path('app_appointment') }}" class="btn btn-default mt30 mb50">make an appointment</a>
+                        <p>{{ doctor.summary }}</p>
+                        <a href="{{ path('app_appointment') }}" class="btn btn-default mt30 mb50">业务咨询</a>
                         <div class="row">
                             <div class="col-md-4">
                                 <h3 class="mb10">Qualifications</h3>
@@ -88,21 +85,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h1 class="heading-title">Doctors</h1>
-                    <h4 class="sub-title mb30">Same department</h4>
+                    <h1 class="heading-title">更多成员</h1>
+                    <h4 class="sub-title mb30">More Members</h4>
                 </div>
             </div>
             <div class="row">
-                {% for related_doctor in related_doctors|default([
-                    {image: 'dc9.jpg', name: 'Dr. Indhulekha Mari', department: 'Oral Health'},
-                    {image: 'dc10.jpg', name: 'Dr. Jonathen petter', department: 'Cardiology'},
-                    {image: 'dc11.jpg', name: 'Dr. Samuvel Son', department: 'Hepatology'},
-                    {image: 'dc12.jpg', name: 'Dr. Rajvi Patel', department: 'Orthopedics'}
-                ]) %}
+                {% for related_doctor in staffs|slice(0,4) %}
                     <div class="col-lg-3 col-md-3">
                         <div class="dc-style-box">
-                            <a href="{{ path('app_doctor_details') }}">
-                                <img src="{{ asset('images/doctor/' ~ related_doctor.image) }}" class="img-responsive" alt="{{ related_doctor.name }}" />
+                            <a href="{{ path('app_doctor_details', {id: related_doctor.id}) }}">
+                                <img src="{{ asset('images/' ~ related_doctor.image) }}" class="img-responsive" alt="{{ related_doctor.title }}" />
                             </a>
                             <div class="dc-style-inner">
                                 <ul>
@@ -110,8 +102,8 @@
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 </ul> 
-                                <h5><a href="{{ path('app_doctor_details') }}">{{ related_doctor.name }}</a></h5>
-                                <span>{{ related_doctor.department }}</span>
+                                <h5><a href="{{ path('app_doctor_details', {id: related_doctor.id}) }}">{{ related_doctor.title }}</a></h5>
+                                <span>{{ related_doctor.title }}</span>
                             </div>
                         </div>
                     </div>
@@ -119,7 +111,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="{{ path('app_doctors') }}" class="btn btn-default">View More</a>
+                    <a href="{{ path('app_doctors') }}" class="btn btn-default">查看更多</a>
                 </div>
             </div>
         </div>
@@ -130,7 +122,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="mb0">Make your appointment now</h1>
+                    <h1 class="mb0">业务咨询</h1>
                     <p class="mb30">Lorem Ipsum which looks reasonable generated Ipsum is therefore always.</p>
                     <a href="{{ path('app_appointment') }}" class="btn btn-default">Book appointment</a>
                 </div>
