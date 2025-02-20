@@ -27,6 +27,7 @@ class IndexController extends AbstractController
 
         $data['news'] = $this->data->findNodesByRegionLabel('news');
         $data['services'] = $this->data->findNodesByRegionLabel('services');
+        $data['staffs'] = $this->data->findNodesByRegionLabel('staffs');
 
         dump($data);
         
