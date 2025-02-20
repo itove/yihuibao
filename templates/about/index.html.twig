@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}About Us - {{ parent() }}{% endblock %}
+{% block title %}关于我们 - {{ parent() }}{% endblock %}
 
 {% block body %}
     {# Page Header #}
@@ -62,31 +62,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="heading-title">Department</h1>
-                    <h4 class="sub-title mb60">Our department & special services</h4>                
+                    <h1 class="heading-title">产品服务</h1>
+                    <h4 class="sub-title mb60">Our special services</h4>                
                 </div>        
                 <div class="col-md-8">
                     <div class="row" role="tablist">
-                        {% for dept in departments|default([
+                        {% set dept = [
                             {icon: 'oralhealth', name: 'Oral Health'},
                             {icon: 'otology', name: 'Otology'},
                             {icon: 'hepatology', name: 'Hepatology'},
                             {icon: 'gastroenterology', name: 'Gastroenterology'},
                             {icon: 'ophthalmology', name: 'Ophthalmology'},
                             {icon: 'orthopedics', name: 'Orthopedics'}
-                        ]) %}
+                        ] %}
+                        {% for i in services %}
                             <div class="col-md-6 col-sm-6">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-3 department-inner-icon">
-                                        <i class="iconmed-{{ dept.icon }} department-icon"></i>
+                                        <i class="iconmed-{{ dept[loop.index0].icon }} department-icon"></i>
                                     </div>
                                     <div class="col-md-9 col-sm-9">
                                         <h2>
-                                            <a href="#{{ dept.icon }}" aria-controls="{{ dept.icon }}" role="tab" data-toggle="tab">
-                                                {{ dept.name }}
+                                            <a href="#{{ dept[loop.index0].icon }}" aria-controls="{{ dept[loop.index0].icon }}" role="tab" data-toggle="tab" style="font-size: 16px;">
+                                                {{ i.title }}
                                             </a>
                                         </h2>
-                                        <p class="mb60">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has...</p>
+                                        <p class="mb60 ellipsis-3">{{ i.summary }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -94,29 +95,22 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ path('app_departments') }}" class="btn btn-default">View More</a>
+                            <a href="{{ path('app_services') }}" class="btn btn-default">查看更多</a>
                         </div>
                     </div>        
                 </div>
                 <div class="col-md-4">
                     <div class="tab-content">
-                        {% for dept in departments|default([
-                            {icon: 'oralhealth', name: 'Oral Health'},
-                            {icon: 'otology', name: 'Otology'},
-                            {icon: 'hepatology', name: 'Hepatology'},
-                            {icon: 'gastroenterology', name: 'Gastroenterology'},
-                            {icon: 'ophthalmology', name: 'Ophthalmology'},
-                            {icon: 'orthopedics', name: 'Orthopedics'}
-                        ]) %}
-                            <div role="tabpanel" class="tab-pane {{ loop.first ? 'active' }}" id="{{ dept.icon }}">
+                        {% for i in services %}
+                            <div role="tabpanel" class="tab-pane {{ loop.first ? 'active' }}" id="{{ dept[loop.index0].icon }}">
                                 <div class="department-right-box">
                                     <div class="department-right-box-icon">
-                                        <i class="iconmed-{{ dept.icon }} department-icon"></i>
+                                        <i class="iconmed-{{ dept[loop.index0].icon }} department-icon"></i>
                                     </div>
                                     <div class="department-right-box-content">
-                                        <h1>{{ dept.name }}</h1>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley scrambled.</p>
-                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mt50">Book appointment</a>                               
+                                        <h1>{{ i.title }}</h1>
+                                        <p>无论何时何地，客户遇到任何问题，我们的专业团队都会迅速响应，全力解决，保障医院风险管理系统的稳定运行。</p>
+                                        <a href="{{ path('app_appointment') }}" class="btn btn-default mt50">立即咨询</a>                               
                                     </div> 
                                 </div>
                             </div>
@@ -132,9 +126,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="mb0">Make your appointment now</h1>
-                    <p class="mb30">Lorem Ipsum which looks reasonable generated Ipsum is therefore always.</p>
-                    <a href="{{ path('app_appointment') }}" class="btn btn-default">Book appointment</a>
+                    <h1 class="mb0">业务咨询</h1>
+                    <p class="mb30">无论何时何地，客户遇到任何问题，我们的专业团队都会迅速响应，全力解决</p>
+                    <a href="{{ path('app_appointment') }}" class="btn btn-default">立即咨询</a>
                 </div>
             </div>
         </div>

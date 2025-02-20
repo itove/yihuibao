@@ -79,6 +79,7 @@ class IndexController extends AbstractController
     {
         $data = $this->data->getPageContent('about', $request->getLocale());
         $data['staffs'] = $this->data->findNodesByRegionLabel('staffs');
+        $data['services'] = $this->data->findNodesByRegionLabel('services');
 
         // $data['page']['intro'] = '怀抱“经世济民，天下大同”的美好愿景，大同经纪在荆楚大地播下了希望的种子。在精彩的绽放中实现华丽转身，独树一帜，引领风潮。';
 
