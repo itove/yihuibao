@@ -8,11 +8,8 @@
         <div class="container">
             <div class="row page-section">
                 <div class="col-md-8">
-                    <h4>What we are</h4>
-                    <h1>About Us</h1>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                    <h4>About Us</h4>
+                    <h1>关于我们</h1>
                 </div>
             </div>
         </div>
@@ -23,14 +20,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1 class="heading-title">About us</h1>
+                    <h1 class="heading-title">关于我们</h1>
                     <h4 class="sub-title mb30">What we are and our history</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                    <p>{{ about[0].summary }}</p>
                     
-                    <div class="blockquote">
-                        <p>Popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker.</p>
-                    </div>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
                 </div>
                 <div class="col-md-5">
                     <img src="{{ asset('images/about-circle.jpg') }}" class="img-responsive img-circle" alt="About Us" />
