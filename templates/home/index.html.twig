@@ -161,7 +161,10 @@
                             <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="dr{{ loop.index }}">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="{{ asset(staff.image|default('images/dr-main-home.png')) }}" class="img-responsive" alt="{{ staff.title }}" />
+                                        {#
+                                        <img src="{{ asset('images/' ~ staff.image|default('images/dr-main-home.png')) }}" class="img-responsive" alt="{{ staff.title }}" />
+                                        #}
+                                        <img src="/images/dr-main-home.png" class="img-responsive" alt="{{ staff.title }}" />
                                     </div>
                                     <div class="col-md-8">
                                         <div class="dr-details">
@@ -185,43 +188,23 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="dr-tabs-box"> 
-                        <ul class="nav dr-tab" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#dr1" aria-controls="dr1" role="tab" data-toggle="tab">
+                  <div class="dr-tabs-box"> 
+                    <ul class="nav dr-tab" role="tablist">
+                        {% for staff in staffs|slice(0, 3) %}
+                            <li role="presentation" class="{% if loop.first %}active{% endif %}">
+                                <a href="#dr{{ loop.index }}" aria-controls="dr{{ loop.index }}" role="tab" data-toggle="tab">
                                     <div class="dr-box">
                                         <span class="dr-img">
-                                            <img src="{{ asset('images/small-dr-1.jpg') }}" class="img-responsive img-circle" alt="" />
+                                        <img src="{{ asset('images/' ~ staff.image|default('images/dr-thumb.png')) }}" class="img-circle" alt="{{ staff.title }}">
                                         </span>
-                                        <span class="dr-title">Dr. Indhulekha Mari</span>
-                                        <span class="dr-sub-title">Ophthalmology</span>                    
-                                    </div> 
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#dr2" aria-controls="dr2" role="tab" data-toggle="tab">                   
-                                    <div class="dr-box">
-                                        <span class="dr-img">
-                                            <img src="{{ asset('images/small-dr-2.jpg') }}" class="img-responsive img-circle" alt="" />
-                                        </span>
-                                        <span class="dr-title">Dr. Jonathen petter</span>
-                                        <span class="dr-sub-title">Hepatology</span>                    
+                                        <span class="dr-title">{{ staff.title }}</span>
+                                        <span class="dr-sub-title d-none">{{ staff.title }}</span>
                                     </div>
                                 </a>
                             </li>
-                            <li role="presentation">
-                                <a href="#dr3" aria-controls="dr3" role="tab" data-toggle="tab">                    
-                                    <div class="dr-box">
-                                        <span class="dr-img">
-                                            <img src="{{ asset('images/small-dr-3.jpg') }}" class="img-responsive img-circle" alt="" />
-                                        </span>
-                                        <span class="dr-title">Dr. Samuvel son</span>
-                                        <span class="dr-sub-title">Orthopedics</span>                    
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>      
+                        {% endfor %}
+                    </ul>
+                  </div>
                 </div>
             </div>
         </div>
