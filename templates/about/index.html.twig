@@ -48,7 +48,7 @@
                             <a href="{{ path('app_doctor_details', {id: doctor.id}) }}">
                                 <img src="{{ asset('images/' ~ doctor.image) }}" class="img-responsive" alt="{{ doctor.title }}" />
                             </a>
-                            <h4><a href="{{ path('app_doctor_details') }}">{{ doctor.title }}</a></h4>
+                            <h4><a href="{{ path('app_doctor_details', {id: doctor.id}) }}">{{ doctor.title }}</a></h4>
                             <span>{{ doctor.title }}</span>
                         </div>
                     </div>
