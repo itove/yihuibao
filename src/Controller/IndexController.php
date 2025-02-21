@@ -143,4 +143,65 @@ class IndexController extends AbstractController
 
         return $this->render('doctor/details.html.twig', $data);
     }
+
+    #[Route('/services', name: 'app_services')]
+    public function service_index(Request $request): Response
+    {
+        $data = $this->data->getPageContent('services', $request->getLocale());
+        $data['testimonials'] = $this->data->findNodesByRegionLabel('testimonial');
+
+        return $this->render('service/index.html.twig', $data);
+    }
+
+    #[Route('/services/{id}', name: 'app_service_details', requirements: ['id' => '\d+'])]
+    public function service_details(int $id, Request $request): Response
+    {
+        // Previous details action code remains the same
+        $service = [
+            'title' => 'Laboratory Services',
+            'description' => 'Comprehensive laboratory services including blood work, diagnostics, and testing.',
+            'quote' => 'State-of-the-art facilities providing accurate and timely results.',
+            'content' => 'Our laboratory offers a wide range of diagnostic services with the latest technology...'
+        ];
+
+        $featured_services = [
+            [
+                'image' => 'service7.jpg',
+                'title' => 'Sexual Health'
+            ],
+            [
+                'image' => 'service8.jpg',
+                'title' => 'Non - Surgical Hair Replacement'
+            ],
+            [
+                'image' => 'service9.jpg',
+                'title' => 'Additional Treatments'
+            ]
+        ];
+
+        $testimonials = [
+            [
+                'text' => 'Excellent service and professional staff. The laboratory results were delivered quickly and accurately.',
+                'name' => 'Mariya Thomas',
+                'designation' => 'Patient'
+            ],
+            [
+                'text' => 'Very impressed with the modern facilities and attention to detail in all procedures.',
+                'name' => 'Martin John',
+                'designation' => 'Patient'
+            ],
+            [
+                'text' => 'The staff was very helpful in explaining the procedures and making me feel comfortable.',
+                'name' => 'Woods Lovins',
+                'designation' => 'Patient'
+            ]
+        ];
+
+        return $this->render('service/details.html.twig', [
+            'service' => $service,
+            'featured_services' => $featured_services,
+            'testimonials' => $testimonials,
+            'conf' => $this->data->getConf($request->getLocale()),
+        ]);
+    }
 }

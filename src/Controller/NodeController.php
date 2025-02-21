@@ -208,7 +208,7 @@ class NodeController extends AbstractController
         return $this->render('products/show.html.twig', $data);
     }
 
-    #[Route('/services', name: 'app_services')]
+    #[Route('/services0', name: 'app_services0')]
     public function services(Request $request): Response
     {
         $data = $this->data->getPageContent('services', $request->getLocale());
