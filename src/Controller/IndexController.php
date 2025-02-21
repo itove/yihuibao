@@ -112,26 +112,12 @@ class IndexController extends AbstractController
     }
 
     #[Route('/doctors', name: 'app_doctors')]
-    public function doc_index(): Response
+    public function doc_index(Request $request): Response
     {
-        // In a real application, you would fetch this from a database
-        $doctors = [
-            [
-                'id' => 1,
-                'image' => 'dc1.jpg',
-                'name' => 'Dr. Indhulekha Mari',
-                'department' => 'Oral Health',
-                'facebook' => '#',
-                'twitter' => '#',
-                'googleplus' => '#'
-            ],
-            // Add more doctors here...
-        ];
+        $data['staffs'] = $this->data->findNodesByRegionLabel('staffs');
+        $data['conf'] = $this->data->getConf($request->getLocale());
 
-        return $this->render('doctor/index.html.twig', [
-            'doctors' => $doctors,
-            'next_page' => 2 // For pagination
-        ]);
+        return $this->render('doctor/index.html.twig', $data);
     }
 
     #[Route('/doctor/details/{id}', name: 'app_doctor_details')]
