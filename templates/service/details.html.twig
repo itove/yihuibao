@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Service Details - {{ parent() }}{% endblock %}
+{% block title %}产品服务 - {{ parent() }}{% endblock %}
 
 {% block body %}
     {# Page Header #}
@@ -9,10 +9,7 @@
             <div class="row page-section">
                 <div class="col-md-8">
                     <h4>Our offering</h4>
-                    <h1>Service Details</h1>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ path('app_appointment') }}" class="btn btn-linegreen pull-right mt20 mr0">make an appointment</a>
+                    <h1>产品服务</h1>
                 </div>
             </div>
         </div>
@@ -23,28 +20,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h1 class="heading-title">{{ service.title|default('Laboratory') }}</h1>
+                    <h1 class="heading-title">{{ service.title }}</h1>
                     <h4 class="sub-title-normal">Our special services</h4>
                     <img src="{{ asset('images/service-details.jpg') }}" class="img-responsive mb40" alt="Service" />
-
-                    <p class="mb50">{{ service.description|default('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently.') }}</p>
-                    
-                    <div class="row">
-                        <div class="col-lg-7 col-md-7">
-                            <div class="blockquote mb50">
-                                <p>{{ service.quote|default('There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.') }}</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-5">
-                            <div class="service-details-inner">
-                                {% for i in 1..3 %}
-                                    <img src="{{ asset('images/service/ser-details' ~ i ~ '.jpg') }}" class="img-responsive img-circle" alt="" />
-                                {% endfor %}
-                            </div>
-                        </div> 
-                    </div>
-                    
-                    <p>{{ service.content|default('Page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes ll the Lorem Ipsum generators on the Internet tend to repeat. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by mega hospital.') }}</p>
+                    <p class="mb50">{{ service.summary }}</p>
                 </div>
             </div>
 
@@ -52,22 +31,18 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <hr class="mtb60">
-                    <h1 class="heading-title">Featured Services</h1>
+                    <h1 class="heading-title">产品推荐</h1>
                     <h4 class="sub-title-normal">Our special services</h4>
                 </div>    
                 
-                {% for service in featured_services|default([
-                    {id: 7, image: 'service7.jpg', title: 'Sexual Health'},
-                    {id: 8, image: 'service8.jpg', title: 'Non - Surgical Hair Replacement'},
-                    {id: 9, image: 'service9.jpg', title: 'Additional Treatments'}
-                ]) %}
+                {% for service in services %}
                     <div class="col-md-4 col-sm-4">
                         <div class="service-style-box">
                             <a href="{{ path('app_service_details', {id: service.id}) }}">
-                                <img src="{{ asset('images/service/' ~ service.image) }}" class="img-responsive mb30" alt="">
+                                <img src="{{ asset('images/' ~ service.image) }}" class="img-responsive mb30" alt="">
                             </a>    
                             <h2><a href="{{ path('app_service_details', {id: service.id}) }}" class="black">{{ service.title }}</a></h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy ...</p>
+                            <p class="ellipsis-2">{{ service.summary }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -75,7 +50,7 @@
             
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="{{ path('app_services') }}" class="btn btn-default">full services</a>
+                    <a href="{{ path('app_services') }}" class="btn btn-default">更多产品</a>
                 </div>
             </div>
         </div>
@@ -87,18 +62,14 @@
             <div class="row">
                 <div class="col-md-1"><span class="left-quote">"</span></div>
                 <div class="col-md-6">
-                    <h1 class="heading-title">Happy Client</h1>
+                    <h1 class="heading-title">客户评价</h1>
                     <h4 class="sub-title">What our client says about us</h4>
                     <div id="testimonial-box1" class="testimonial-style-box">
-                        {% for testimonial in testimonials|default([
-                            {text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to.', name: 'Mariya thomas'},
-                            {text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to.', name: 'Martin John'},
-                            {text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to.', name: 'Woods Lovins'}
-                        ]) %}
+                        {% for testimonial in testimonials %}
                             <div class="item">
                                 <div class="testimonial-style-content">
-                                    <p class="testimonial-text2">{{ testimonial.text }}</p>
-                                    <div class="testimonial-name">{{ testimonial.name }}<span>Designation</span></div>
+                                    <p class="testimonial-text2">{{ testimonial.summary }}</p>
+                                    <div class="testimonial-name">{{ testimonial.title }}<span>{{ testimonial.title }}</span></div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -114,9 +85,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="mb0">Make your appointment now</h1>
-                    <p class="mb30">Lorem Ipsum which looks reasonable generated Ipsum is therefore always.</p>
-                    <a href="{{ path('app_appointment') }}" class="btn btn-default">Book appointment</a>
+                    <h1 class="mb0">业务咨询</h1>
+                    <p class="mb30">无论何时何地，客户遇到任何问题，我们的专业团队都会迅速响应，全力解决</p>
+                    <a href="{{ path('app_appointment') }}" class="btn btn-default">立即咨询</a>
                 </div>
             </div>
         </div>
