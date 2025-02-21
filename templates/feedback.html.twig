@@ -1,6 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}业务咨询 - {{ parent() }}{% endblock %}
+{% block css %}
+<style>
+.php-email-form .error-message {
+  display: none;
+  background: #df1529;
+  color: #ffffff;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #ffffff;
+  background: #059652;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: php-email-form-loading 1s linear infinite;
+}
+
+@keyframes php-email-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
+{% endblock %}
 
 {% block body %}
     {# Page Header #}
@@ -15,79 +68,99 @@
         </div>
     </div>
 
-    <!-- Get A Quote Section -->
-    <section id="get-a-quote" class="get-a-quote section">
+    {# Feedback Section #}
+    <div class="section feedback-section" style="margin-bottom: 32px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb60">
+                </div>
+            </div>
 
-      <div class="container">
-
-        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-5 quote-bg" style="background-image: url(/assets/img/quote-bg.jpg);"></div>
-
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-            <form action="{{ path('app_feedback_new') }}" method="post" class="php-email-form">
-              <h3>业务咨询</h3>
-              <p>无论何时何地，客户遇到任何问题，我们的专业团队都会迅速响应，全力解决，保障医院风险管理系统的稳定运行。</p>
-
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="province" class="form-control" placeholder="省份" required="">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="feedback-info">
+                        <div class="feedback-image" style="background-image: url('/images/feedback-bg.jpg')"></div>
+                        <div class="feedback-content">
+                            <h3>专业服务</h3>
+                            <p>无论何时何地，客户遇到任何问题，我们的专业团队都会迅速响应，全力解决，保障医院风险管理系统的稳定运行。</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                  <input type="text" name="city" class="form-control" placeholder="城市" required="">
+                <div class="col-md-7">
+                    <div class="feedback-form">
+                        <form action="{{ path('app_feedback_new') }}" method="post" class="php-email-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb20">
+                                        <input type="text" name="province" class="form-control" placeholder="省份" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb20">
+                                        <input type="text" name="city" class="form-control" placeholder="城市" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb20">
+                                        <input type="text" name="product" class="form-control" placeholder="产品类型" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb20">
+                                        <input type="text" name="title" class="form-control" placeholder="咨询内容" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <h4 class="form-subtitle mb20">您的信息</h4>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group mb20">
+                                        <input type="text" name="name" class="form-control" placeholder="姓名" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group mb20">
+                                        <input type="email" class="form-control" name="email" placeholder="邮箱" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group mb20">
+                                        <input type="text" class="form-control" name="phone" placeholder="电话" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group mb20">
+                                        <textarea class="form-control" name="body" rows="6" placeholder="详情" required></textarea>
+                                    </div>
+                                </div>
+
+                                <input type="text" class="form-control d-none" name="type" value="1">
+                                <div class="col-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">您的信息已提交。感谢您的关注与支持!</div>
+
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="product" class="form-control" placeholder="产品类型" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" name="title" class="form-control" placeholder="咨询内容" required="">
-                </div>
-
-                <div class="col-lg-12">
-                  <h4>您的信息</h4>
-                </div>
-
-                <div class="col-12">
-                  <input type="text" name="name" class="form-control" placeholder="姓名" required="">
-                </div>
-
-                <div class="col-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="邮箱" required="">
-                </div>
-
-                <div class="col-12">
-                  <input type="text" class="form-control" name="phone" placeholder="电话" required="">
-                </div>
-
-                <div class="col-12">
-                  <textarea class="form-control" name="body" rows="6" placeholder="详情" required=""></textarea>
-                </div>
-
-                <input type="text" class="form-control d-none" name="type" value="1">
-                <div class="col-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">您的信息已提交。感谢您的关注与支持!</div>
-
-                  <button type="submit">提交</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Quote Form -->
-
+            </div>
         </div>
-
-      </div>
-
-    </section><!-- /Get A Quote Section -->
-
+    </div>
 
 {% endblock %}
 
-{% block javascript %}
+{% block js %}
+<script src="/js/validate.js"></script>
 {% endblock %}

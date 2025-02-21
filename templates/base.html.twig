@@ -24,6 +24,8 @@
             <link href="{{ asset('css/style.css') }}" rel="stylesheet">
             <link href="{{ asset('css/stucture.css') }}" rel="stylesheet">
         {% endblock %}
+        {% block css %}
+        {% endblock %}
     </head>
 
     <body>
@@ -47,6 +49,9 @@
             <script src="{{ asset('js/jquery.counterup.js') }}"></script>
             <script src="{{ asset('js/menumaker.js') }}"></script>
             <script src="{{ asset('js/theme.js') }}"></script>
+        {% endblock %}
+
+        {% block js %}
         {% endblock %}
     </body>
 </html>
